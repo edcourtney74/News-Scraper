@@ -1,0 +1,32 @@
+{
+  "name": "news-scraper",
+  "version": "1.0.0",
+  "description": "NYT headline scraper",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edcourtney74/News-Scraper.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "nyt"
+  ],
+  "author": "Ed Courtney",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edcourtney74/News-Scraper/issues"
+  },
+  "homepage": "https://github.com/edcourtney74/News-Scraper#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^5.4.2"
+  }
+}
