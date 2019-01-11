@@ -14,6 +14,14 @@ $(document).ready(function () {
         })
     })
 
+    // Function to clear articles
+    $("#clear").on("click", function (event) {
+        event.preventDefault();
+
+        // Clear all items on page
+        $("#results").empty();
+    })
+    
     // Function to save article on user press
     $(".save").on("click", function (event) {
         event.preventDefault();
@@ -76,7 +84,15 @@ $(document).ready(function () {
 
         // Get request for article notes
         $.get(query, function (data) {
-            console.log(data);
+            // Set variable for notes from data
+            var notes = data.articles.notes
+
+            // Use for loop to add individual notes to article modal
+            for (let i = 0; i < notes.length; i++) {
+                // Save note content to HTML with button
+                var noteTextHTML = "<div class='border note p-2 mb-2'>" + notes[i].comment + "<button type='button' class='btn btn-danger btn-sm ml-3 delete-nt' data-id='" + notes[i]._id + "'>X</button></div>";
+                $(".old-notes").append(noteTextHTML);
+            }
         })
     })
 
@@ -102,4 +118,26 @@ $(document).ready(function () {
         // Empty note input for next note
         $("#note-content").val("");
     })
+
+    // Function when user click delete note button
+    $(document).on("click", ".delete-nt", function(event) {
+        event.preventDefault();
+      
+        // Grab articleID from delete button
+        var articleID = $(this).attr("data-id");
+
+        // Query for post request
+        var query = "/delete/" + articleID
+
+        // Send post request to delete note from db
+        $.post(query).then(function (data) {
+        })
+
+        // Remove note from view
+        $(this).closest(".note").fadeOut(500, function () {
+            $(this).closest(".note").empty();
+        });
+
+    })
+
 })

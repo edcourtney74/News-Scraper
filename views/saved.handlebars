@@ -2,7 +2,6 @@
     <div class="row border mt-4">
         <div class="col border">
             <h1 class="mt-2 border" id="title">Saved Articles</h1>
-            <button type="button" class="btn btn-primary btn-lg ml-2 mb-3" id="clear">Clear Articles</button>
         </div>
     </div>
     <div class="row border" id="results">
@@ -36,11 +35,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="old-notes border">
-            {{#each notes}}
-                {{_id}}
-                {{comment}}
-            {{/each}}
+        <div class="old-notes">
         </div>
        <textarea class="form-control" rows="3" id="note-content" placeholder="Enter your note here."></textarea>
       </div>

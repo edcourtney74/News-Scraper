@@ -79,15 +79,12 @@ module.exports = function (app) {
     app.get("/articles/:id", function (req, res) {
         // Query the db using the id parameter passed in
         db.Article.findOne({ _id: req.params.id })
-            // Populate all of the notes associaed with the article
+            // Populate all of the notes associated with the article
             .populate("notes")
             .then(function (dbArticle) {
-                // If an article was found send the object back
-                res.send({
-                    articles: dbArticle
-                })
-            })
-            .catch(function (err) {
+            // If an article exists, send data
+                res.send({articles: dbArticle})
+            }).catch(function (err) {
                 // Send error if error received
                 res.json(err);
             })
@@ -144,4 +141,12 @@ module.exports = function (app) {
             })
     })
 
+    // Post route to delete note from the db
+    app.post("/delete/:id", function (req, res) {
+        // Create a new note in the db
+        db.Note.deleteOne({ _id: req.params.id})
+            .then(function (err) {
+                if (err) throw (err);
+            })
+        })
 }
