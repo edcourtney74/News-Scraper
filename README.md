@@ -30,8 +30,8 @@ Web app that grabs sports headlines from The St. Louis Post-Dispatch for users t
 ![Demonstration](https://github.com/edcourtney74/News-Scraper/blob/master/public/images/demo.gif "Demonstration")
 
 ## Scraped Articles view
-![Scraped view](https://github.com/edcourtney74/News-Scraper/blob/master/public/images/scraped.png "Scraped view")
+![Scraped view](https://github.com/edcourtney74/News-Scraper/blob/master/public/images/scraped.PNG "Scraped view")
 
 ## Article notes view
-![Article notes view](https://github.com/edcourtney74/News-Scraper/blob/master/public/images/notes.png "Article notes view")
+![Article notes view](https://github.com/edcourtney74/News-Scraper/blob/master/public/images/notes.PNG "Article notes view")
 
