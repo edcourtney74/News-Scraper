@@ -1,5 +1,6 @@
 # News-Scraper
-Web app that grabs sports headlines from The St. Louis Post-Dispatch for users to visit, save for later and attach notes
+Web app that grabs sports headlines from The St. Louis Post-Dispatch for users to visit, save for later and attach notes.
+https://nameless-anchorage-56532.herokuapp.com/
 
 ## Features
 ### Scraping articles
