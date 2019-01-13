@@ -10,8 +10,8 @@ module.exports = function (app) {
 
     // Get route to grab all the articles in the db
     app.get("/", function (req, res) {
-        // Grab everything in the Articles collection
-        db.Article.find({})
+        // Grab everything in the Articles collection that has not been marked as removed and sort by most current
+        db.Article.find({ removed: false })
             .then(function (dbArticles) {               
                 res.render("index", {
                     articles: dbArticles
@@ -66,6 +66,8 @@ module.exports = function (app) {
                 // Create a new Article from the result object
                 db.Article.create(result)
                     .then(function (dbArticle) {
+                    console.log(dbArticle);
+                        res.send(dbArticle)                   
                     })
                     .catch(function (err) {
                         // If an error occurred, log it
@@ -83,7 +85,7 @@ module.exports = function (app) {
             .populate("notes")
             .then(function (dbArticle) {
             // If an article exists, send data
-                res.send({articles: dbArticle})
+                res.send({saved: dbArticle})
             }).catch(function (err) {
                 // Send error if error received
                 res.json(err);
@@ -91,11 +93,11 @@ module.exports = function (app) {
     })
 
     // POST ROUTES
-    // Post route to mark article as saved in db
+    // Post route to mark article as saved and removed in db
     app.post("/saved", function (req, res) {
         db.Article.updateOne(
             { _id: req.body.id },
-            { $set: { saved: true } },
+            { $set: { saved: true , removed: true} },
             function (error, data) {
                 // show any errors
                 if (error) {

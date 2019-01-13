@@ -9,7 +9,8 @@ var ArticleSchema = new Schema({
     title: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        unique: true
     },
 
     // Link is required and unique so stories aren't posted multiple times
@@ -29,6 +30,18 @@ var ArticleSchema = new Schema({
     saved: {
         type: Boolean,
         default: false
+    },
+
+    // Removed stores whether the reader doesn't want to see the article again. The default is false.
+    removed: {
+        type: Boolean,
+        default: false
+    },
+    
+    // Add date so the newest articles appear first.
+    date: {
+        type: Date, 
+        default: Date.now
     },
 
     // Link to associated notes for the article

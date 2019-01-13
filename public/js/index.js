@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     // Get any articles from the database on page load
-    $.getJSON("/", function (data) {        
+    $.getJSON("/", function (data) {       
     });
 
     // CLICK FUNCTIONS
@@ -9,8 +9,12 @@ $(document).ready(function () {
     $("#scrape").on("click", function (event) {
         event.preventDefault();
 
+        // Clear current articles from screen
+        $("#results").empty();
+        
         // Send scrape request
         $.get("/scrape", function (data) {
+            window.location.reload();
         })
     })
 
@@ -34,13 +38,15 @@ $(document).ready(function () {
             $(this).closest(".card").empty();
         });
 
-        // Create object to send, updating saved value to true
+        // Create object to send, updating saved value to true and removed to true
+        // Setting removed to true will keep the article from appearing in scraped articles again
         var Obj = {
             id: articleID,
-            saved: true
+            saved: true,
+            removed: true
         }
 
-        // Send post request to update article value to saved in db
+        // Send post request to update article value to saved and removed in db
         $.post("/saved", Obj
         ).then(function (data) {
         })
@@ -76,6 +82,10 @@ $(document).ready(function () {
     $(".notes").on("click", function (event) {
         event.preventDefault();
 
+        // Clear previous title, notes from modal
+        $(".modal-title").empty();
+        $(".old-notes").empty();        
+        
         // Grab articleID from notes button
         var articleID = $(this).attr("data-id");
 
@@ -85,7 +95,16 @@ $(document).ready(function () {
         // Get request for article notes
         $.get(query, function (data) {
             // Set variable for notes from data
-            var notes = data.articles.notes
+            console.log(data);
+            
+            // Display article title at top of modal
+            $(".modal-title").text(data.saved.title);
+
+            // Add article id to save note button in modal
+            $(".save-note").attr("data-id", data.saved._id);
+            
+            // Save variable to access notes array
+            var notes = data.saved.notes;
 
             // Use for loop to add individual notes to article modal
             for (let i = 0; i < notes.length; i++) {

@@ -1,5 +1,23 @@
+body {
+    background-image: url("/images/newspaper.jpg");
+}
+
+.btn-primary {
+    background-color: #786e55;
+    border: none;
+}
+
 .container {
     background-color: white;
+}
+
+.crop-text-2 {
+    -webkit-line-clamp: 2;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    height: 2.6rem;
 }
 
 #title {
